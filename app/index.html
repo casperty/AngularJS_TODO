@@ -1,0 +1,73 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <title>A ToDo list made with AngularJS</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        body     { padding-top:30px; }
+        .done-true {
+            color: grey;
+        }
+    </style>
+    <!-- JS -->
+
+    <script src="http://code.angularjs.org/1.2.6/angular.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+     <script src="js/bootstrap.js"></script>
+    <script src="js/app.js"></script>
+
+</head>
+<body>
+<div class="container" ng-controller="TodoCtrl">
+    <h1>A basic example with AngularJS <small>The ToDo list</small></h1>
+    <p class="lead">A ToDo list made with AngularJS and styled with Bootstrap.</p>
+    <!-- Formulaire pour ajouter un item -->
+    <form class="form-horizontal" role="form" ng-submit="addTodo()">
+        <div class="form-group">
+        <input type="text" class="form-control" ng-model="todoText" placeholder="What do you have to do, Sir ?">
+    </div>
+    <!-- Bouton de formulaire pour ajouter l'item-->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit task</button>
+        </div>
+    </form>
+    <br/>
+    <!-- Liste des taches -->
+    <table class="table table-striped">
+        <tr ng-repeat="todo in todoList"><td><input type="checkbox" ng-model="todo.done">
+    <span class="done-{{todo.done}}">{{todo.text}}</span></td></tr>
+    </table>
+    <!-- Liste des actions possibles -->
+    <span>{{remaining()}} of {{todoList.length}} remaining</span> [ <a href="#myModal" data-toggle="modal" ng-click="archive()">Archive item(s)</a> ] [ <a href="" ng-click="restore()">Restore archived item(s)</a> ] [ <a href="" ng-click="save()">Save the list</a> ] [ <a href="" ng-click="init()">Reset the list</a> ]
+    <br>
+    
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Information</h4>
+                </div>
+                <div class="modal-body">
+                    <p>The item(s) selected are achived but not saved.</p>
+                    <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <address>
+          <strong>Alexandre Ravaux</strong><br>
+          <abbr title="E-mail">@</abbr> : <a href="mailto:alexandre.ravaux@outlook.com">alexandre.ravaux@outlook.com</a><br>
+          Based upon <a href="http://www.youtube.com/watch?v=WuiHuZq_cg4">John Lindquist's tutorial</a>.
+        </address>
+    </footer>    
+</div>
+</body>
+</html>
